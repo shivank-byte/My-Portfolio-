@@ -415,85 +415,82 @@ color: var(--text); margin-bottom: 10px; letter-spacing: -0.5px;
 .section-sub {{ font-size: 1rem; color: var(--text-dim); margin-bottom: 44px; line-height: 1.6; max-width: 640px; }}
 
 /* 01/02/03 EDITORIAL PROJECT LAYOUT */
+/* PROJECT DETAIL — single natural reading flow, identical structure on
+every screen size (no two-column grid that has to be un-done on mobile,
+no display:none escape hatches that quietly delete content on phones —
+that exact bug used to hide every image and stat on screens under 960px). */
 .proj-editorial {{
-display: grid; grid-template-columns: 80px 1fr 1fr;
-gap: 0 48px; padding: 52px 0;
-border-bottom: 1px solid var(--rule);
-align-items: start;
+padding: 44px 0; border-bottom: 1px solid var(--rule);
 }}
-.proj-editorial:first-child {{
-padding-top: 8px; position: relative;
-}}
+.proj-editorial:first-child {{ padding-top: 8px; position: relative; }}
 .proj-editorial:first-child::before {{
-content: 'FEATURED'; position: absolute; top: -14px; left: 80px;
+content: 'FEATURED'; position: absolute; top: -14px; left: 0;
 font-family: var(--mono); font-size: 0.74rem; letter-spacing: 2.5px;
 color: var(--red); background: var(--bg); padding: 0 8px;
 }}
 .proj-editorial:last-child {{ border-bottom: none; }}
+.proj-header-row {{ display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }}
 .proj-num {{
-font-family: var(--serif); font-size: 3.5rem; font-weight: 900;
-color: var(--rule); line-height: 1; padding-top: 4px;
-transition: color 0.2s;
+font-family: var(--serif); font-size: 1.7rem; font-weight: 900;
+color: var(--red); line-height: 1;
 }}
-.proj-editorial:hover .proj-num {{ color: var(--red); }}
-.proj-meta {{ position: relative; }}
 .proj-eyebrow {{
-font-family: var(--mono); font-size: 0.72rem; color: var(--red);
-letter-spacing: 2px; margin-bottom: 14px;
+font-family: var(--mono); font-size: 0.76rem; color: var(--text-dim);
+letter-spacing: 1.5px; text-transform: uppercase;
 }}
 .proj-title-big {{
-font-family: var(--serif); font-size: 1.8rem; font-weight: 800;
-color: var(--text); line-height: 1.2; margin-bottom: 14px;
+font-family: var(--serif); font-size: 1.9rem; font-weight: 800;
+color: var(--text); line-height: 1.2; margin-bottom: 20px;
 }}
-.proj-editorial:first-child .proj-title-big {{ font-size: 2.1rem; }}
+.proj-editorial:first-child .proj-title-big {{ font-size: 2.2rem; }}
+/* Hero image: always full-width and always visible — this is the fix. */
+.proj-hero-img {{
+width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 22px;
+border: 1px solid var(--rule); box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+background: var(--bg-card2);
+}}
+.proj-hero-img img {{ width: 100%; max-height: 460px; object-fit: cover; display: block; }}
 .proj-desc-big {{
-font-size: 0.96rem; color: var(--text-mid); line-height: 1.8;
-margin-bottom: 20px;
+font-size: 0.98rem; color: var(--text-mid); line-height: 1.8;
+margin-bottom: 20px; max-width: 760px;
 }}
 .proj-features {{
-font-size: 0.84rem; color: var(--text-dim); line-height: 1.7;
-margin-bottom: 22px; font-style: italic;
-border-left: 2px solid var(--rule); padding-left: 12px;
+font-size: 0.87rem; color: var(--text-dim); line-height: 1.7;
+margin-bottom: 20px; font-style: italic; max-width: 760px;
+border-left: 2px solid var(--rule); padding-left: 14px;
+}}
+.proj-pitch-box {{
+font-size: 0.92rem; color: var(--text); line-height: 1.75;
+margin-bottom: 26px; max-width: 760px;
+background: var(--bg-card2); border-left: 3px solid var(--gold);
+border-radius: 4px; padding: 16px 20px;
 }}
 .proj-stack {{ display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }}
 .proj-tag {{
-font-family: var(--mono); font-size: 0.7rem; color: var(--text-mid);
+font-family: var(--mono); font-size: 0.76rem; color: var(--text-mid);
 background: var(--bg-card2); border: 1px solid var(--rule);
 padding: 4px 11px; border-radius: 5px;
 }}
-.proj-actions {{ display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }}
+.proj-actions {{ display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }}
 .proj-link {{
-display: inline-block; font-family: var(--mono); font-size: 0.78rem;
+display: inline-block; font-family: var(--mono); font-size: 0.8rem;
 color: var(--red); text-decoration: none;
 border: 1px solid rgba(224,52,42,0.35); padding: 8px 18px; border-radius: 6px;
 transition: all 0.2s;
 }}
 .proj-link:hover {{ background: var(--red); color: white; box-shadow: 0 4px 16px rgba(224,52,42,0.35); }}
-.proj-img-col {{
-position: relative; background: var(--bg-card2); border: 1px solid var(--rule);
-border-radius: 14px; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+/* Remaining screenshots (everything after the hero image) — a simple,
+always-visible responsive grid. Replaces the old fixed poster/collage
+layouts that behaved differently depending on image count. */
+.proj-gallery-grid {{
+display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 10px; margin-bottom: 26px;
 }}
-.proj-collage {{
-display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-radius: 10px; overflow: hidden;
+.proj-gallery-grid img {{
+width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px;
+border: 1px solid var(--rule); transition: transform 0.25s ease;
 }}
-.proj-collage img {{
-width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 6px;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-}}
-.proj-collage img:hover {{ transform: scale(1.04); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }}
-.proj-collage-single img {{
-width: 100%; border-radius: 10px; object-fit: cover; display: block;
-}}
-.proj-collage-3 {{
-grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr;
-}}
-.proj-collage-lead {{ grid-row: 1 / 3; aspect-ratio: 3/4 !important; }}
-.proj-collage-many {{
-grid-template-columns: 1fr 1fr; max-height: 640px; overflow-y: auto; padding-right: 4px;
-}}
-.proj-collage-many img {{ aspect-ratio: 4/3; }}
-.proj-collage-many::-webkit-scrollbar {{ width: 6px; }}
-.proj-collage-many::-webkit-scrollbar-thumb {{ background: var(--rule); border-radius: 3px; }}
+.proj-gallery-grid img:hover {{ transform: scale(1.03); }}
 
 /* MINI STAT STRIP — fills the dead space under project visuals */
 .proj-mini-stats {{
@@ -645,11 +642,12 @@ display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
 font-family: var(--mono); font-size: 0.82rem; color: var(--text-dim);
 }}
 
-/* NETFLIX-STYLE PROJECT ROWS — poster art on top, title/category always
-visible below (NOT hover-gated: hover doesn't exist on touchscreens, so
-anything hidden-until-hover is permanently invisible on mobile). Hovering
-on desktop still pops the card slightly and reveals a short intro line as
-a bonus, but the title itself is always on screen for everyone. */
+/* NETFLIX-STYLE PROJECT ROWS — poster art on top, title ALWAYS visible
+below it in bold crimson serif (critical: hover doesn't exist on touch-
+screens, so the title can never be hidden-until-hover or mobile users see
+nothing). Hovering on desktop is a pure bonus: a muted preview video
+crossfades in over the poster and starts playing, and a secondary panel
+(category, one-line intro, CTA) expands below the title. */
 .netflix-row {{
 display: flex; gap: 18px; overflow-x: auto; padding: 24px 4px 40px;
 scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
@@ -669,19 +667,31 @@ border-radius: 6px 6px 8px 8px;
 transition: transform 0.25s ease 150ms, box-shadow 0.25s ease 150ms;
 z-index: 5;
 }}
-.netflix-card-img {{ width: 100%; aspect-ratio: 2/3; overflow: hidden; background: var(--bg-card2); }}
-.netflix-card-img img {{ width: 100%; height: 100%; object-fit: cover; display: block; }}
-/* Always visible: eyebrow + title + a one-line intro. This is the core fix —
-previously this whole block was max-height:0/opacity:0 until :hover. */
-.netflix-card-body {{
-padding: 12px 14px 16px;
+.netflix-card-img {{ position: relative; width: 100%; aspect-ratio: 2/3; overflow: hidden; background: var(--bg-card2); }}
+.netflix-card-img .card-poster {{ width: 100%; height: 100%; object-fit: cover; display: block; }}
+.netflix-card-img .card-video {{
+position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
 }}
+.netflix-card:hover .card-video {{ opacity: 1; }}
+/* Title: always rendered, never hover-gated. */
+.netflix-card-title {{
+font-family: var(--serif); font-weight: 700; font-size: 1.02rem; color: var(--red);
+line-height: 1.3; padding: 12px 14px 4px;
+}}
+/* Secondary panel: collapsed by default, expands on hover (desktop-only
+bonus — on mobile this content simply stays tucked away, which is fine
+since the title + tap-to-open-detail is already the full mobile path). */
+.netflix-card-body {{
+max-height: 0; opacity: 0; padding: 0 14px; overflow: hidden;
+transition: max-height 0.22s ease 100ms, opacity 0.18s ease 100ms, padding 0.22s ease 100ms;
+}}
+.netflix-card:hover .netflix-card-body {{ max-height: 160px; opacity: 1; padding: 0 14px 16px; }}
 .netflix-card-eyebrow {{
 font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim);
 letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
 display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
 }}
-.netflix-card-title {{ font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--text); line-height: 1.28; margin-bottom: 6px; }}
 .netflix-card-intro {{ font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; }}
 .netflix-card-cta {{
 font-family: var(--mono); font-size: 0.74rem; color: var(--red);
@@ -756,8 +766,6 @@ color: var(--red) !important; letter-spacing: 1.5px !important;
 @media (max-width: 960px) {{
 .nav-bar, .hero-outer, .section, .contact-wrap, .footer {{ padding-left: 24px !important; padding-right: 24px !important; }}
 .hero-name {{ font-size: 2.6rem; }}
-.proj-editorial {{ grid-template-columns: 60px 1fr; }}
-.proj-img-col {{ display: none; }}
 .skills-grid {{ grid-template-columns: 1fr; }}
 .minor-card {{ flex-basis: 210px; }}
 .illus-grid {{ grid-template-columns: repeat(2,1fr); }}
@@ -1670,20 +1678,35 @@ def _first_sentence(text, max_len=150):
 
 
 def render_netflix_row(projects):
-    """Horizontally-scrollable vertical poster cards — Netflix style. Each
-    whole card is a plain <a href='?project=NUM'> link: hovering glows it,
-    clicking sets the ?project= query param, which we read below to swap
-    into the full detail view. No custom JS/components needed."""
+    """Horizontally-scrollable vertical poster cards — Netflix style.
+    Poster image + title are ALWAYS visible (critical on touchscreens,
+    which have no hover state at all). On hover (desktop bonus only):
+    a muted looping preview video crossfades in over the poster and
+    autoplays, and a secondary info panel (category, one-line intro,
+    CTA) expands below the title. Whole card is still a plain
+    <a href='?project=NUM'> link, so tapping on mobile still navigates
+    straight to the full detail view."""
     cards = ""
     for p in projects:
         lead_img = (p.get("images") or [None])[0]
-        img_html = f"<img loading='lazy' src='{lead_img}' alt='{p['title']}'/>" if lead_img else ""
+        img_html = f"<img class='card-poster' loading='lazy' src='{lead_img}' alt='{p['title']}'/>" if lead_img else ""
+        lead_video = (p.get("videos") or [None])[0]
+        video_html = (
+            f"<video class='card-video' muted loop playsinline preload='none'>"
+            f"<source src='{lead_video}' type='video/mp4'></video>"
+            if lead_video else ""
+        )
+        hover_js = (
+            "onmouseenter=\"var v=this.querySelector('.card-video'); if(v){v.currentTime=0; v.play();}\" "
+            "onmouseleave=\"var v=this.querySelector('.card-video'); if(v){v.pause();}\""
+            if lead_video else ""
+        )
         cards += f"""
-<a class='netflix-card' href='?project={p["num"]}#projects'>
-<div class='netflix-card-img'>{img_html}</div>
+<a class='netflix-card' href='?project={p["num"]}#projects' {hover_js}>
+<div class='netflix-card-img'>{img_html}{video_html}</div>
+<div class='netflix-card-title'>{p["title"]}</div>
 <div class='netflix-card-body'>
 <div class='netflix-card-eyebrow'>{p["num"]} · {p["category"]} <span class='status-badge {status_class[p["status"]]}'>{p["status_label"]}</span></div>
-<div class='netflix-card-title'>{p["title"]}</div>
 <div class='netflix-card-intro'>{_first_sentence(p.get("desc"), 95)}</div>
 <div class='netflix-card-cta'>VIEW FULL CASE STUDY ↗</div>
 </div>
@@ -1693,29 +1716,23 @@ def render_netflix_row(projects):
 
 
 def render_project_detail(p):
-    """Full editorial write-up — desc, features, pitch, stack, image collage,
-    mini-stats, methodology. Reached by clicking through from a compact card."""
-    imgs_html = ""
+    """Full editorial write-up — desc, features, pitch, stack, hero image,
+    gallery grid, mini-stats, methodology. Reached by clicking through from
+    a compact card. Single-column flow at every screen width — no grid that
+    has to be undone or hidden on mobile."""
     imgs = p.get("images", [])
-    if len(imgs) > 4:
-        tiles = "".join(f"<img loading='lazy' src='{src}' alt='{p['title']}'/>" for src in imgs)
-        imgs_html = f"<div class='proj-collage proj-collage-many'>{tiles}</div>"
-    elif len(imgs) == 4:
-        imgs_html = f"""<div class='proj-collage'>
-            <img loading='lazy' src='{imgs[0]}' alt='{p["title"]}'/><img loading='lazy' src='{imgs[1]}' alt='{p["title"]}'/>
-            <img loading='lazy' src='{imgs[2]}' alt='{p["title"]}'/><img loading='lazy' src='{imgs[3]}' alt='{p["title"]}'/></div>"""
-    elif len(imgs) == 3:
-        imgs_html = f"""<div class='proj-collage proj-collage-3'>
-            <img loading='lazy' class='proj-collage-lead' src='{imgs[0]}' alt='{p["title"]}'/>
-            <img loading='lazy' src='{imgs[1]}' alt='{p["title"]}'/><img loading='lazy' src='{imgs[2]}' alt='{p["title"]}'/></div>"""
-    elif len(imgs) >= 2:
-        imgs_html = f"""<div class='proj-collage'><img loading='lazy' src='{imgs[0]}' alt='{p["title"]}'/><img loading='lazy' src='{imgs[1]}' alt='{p["title"]}'/></div>"""
-    elif imgs:
-        imgs_html = f"<div class='proj-collage-single'><img loading='lazy' src='{imgs[0]}' alt='{p['title']}'/></div>"
+    hero_img_html = ""
+    gallery_grid_html = ""
+    if imgs:
+        hero_img_html = f"<div class='proj-hero-img'><img loading='lazy' src='{imgs[0]}' alt='{p['title']}'/></div>"
+        rest = imgs[1:]
+        if rest:
+            tiles = "".join(f"<img loading='lazy' src='{src}' alt='{p['title']}'/>" for src in rest)
+            gallery_grid_html = f"<div class='proj-gallery-grid'>{tiles}</div>"
 
     stack_html = "".join(f"<span class='proj-tag'>{s}</span>" for s in p.get("stack", []))
     link_html = f"<a class='proj-link' href='{p['link']}' target='_blank'>Visit project ↗</a>" if p.get("link") else ""
-    pitch_html = f"<div class='proj-features'>{p['pitch']}</div>" if p.get("pitch") else ""
+    pitch_html = f"<div class='proj-pitch-box'>{p['pitch']}</div>" if p.get("pitch") else ""
     mini_stats_html = ""
     if p.get("mini_stats"):
         mini_stats_html = "<div class='proj-mini-stats'>" + "".join(
@@ -1738,7 +1755,6 @@ def render_project_detail(p):
 </div>
 """)
         with col_globe:
-            html("<div class='proj-img-col'>")
             bg_color = "#0a0a0c" if DM else "#f8f7f4"
             line_color = "rgba(224,52,42,0.6)"
             ocean_color = "#0d1b2a" if DM else "#cce4f5"
@@ -1772,21 +1788,22 @@ def render_project_detail(p):
                     for src, cap in p["gallery"]
                 )
                 html(f"<div class='proj-gallery'>{gallery_html}</div>")
-            html("</div>")
     else:
         html(f"""
 <div class='proj-editorial'>
-<div class='proj-num'>{p["num"]}</div>
-<div class='proj-meta'>
-<div class='proj-eyebrow'>{p["category"]} &nbsp;·&nbsp; <span class='status-badge {status_class[p["status"]]}'>{p["status_label"]}</span></div>
+<div class='proj-header-row'>
+<span class='proj-num'>{p["num"]}</span>
+<span class='proj-eyebrow'>{p["category"]} &nbsp;·&nbsp; <span class='status-badge {status_class[p["status"]]}'>{p["status_label"]}</span></span>
+</div>
 <div class='proj-title-big'>{p["title"]}</div>
+{hero_img_html}
+{mini_stats_html}
 <div class='proj-desc-big'>{p["desc"]}</div>
 <div class='proj-features'>{p.get("features","")}</div>
 {pitch_html}
+{gallery_grid_html}
 <div class='proj-stack'>{stack_html}</div>
 <div class='proj-actions'>{link_html}</div>
-</div>
-<div class='proj-img-col'>{imgs_html}{mini_stats_html}</div>
 </div>
 """)
 
